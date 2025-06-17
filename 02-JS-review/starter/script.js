@@ -142,3 +142,183 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+/*
+const book = getBook(3);
+
+// const title = book.title;
+// const author = book.author;
+
+const { title, author, publicationDate, genres, hasMovieAdaptation, pages } =
+  book;
+
+console.log(author, title, genres);
+
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+// ********** rest operator **********
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+console.log(primaryGenre, secondaryGenre);
+console.log(otherGenres);
+
+// ********** spread operator **********
+
+const newGenres = [...genres, "epic fantasy "];
+
+console.log(newGenres);
+
+// ********** object spread **********
+
+const updatedBook = {
+  ...book,
+  moviePublicationDate: "2001-12-19",
+  pages: 1210,
+};
+
+console.log(updatedBook);
+
+const getYear = (str) => str.split("-")[0];
+
+const summary = `The book ${title} was written by ${author} in ${getYear(
+  publicationDate
+)}.`;
+
+summary;
+
+const pageRange = pages > 1000 ? "long book" : "short book";
+pageRange;
+
+console.log(getYear(publicationDate));
+
+console.log(true && "Hello");
+console.log(false && "Hello");
+console.log(hasMovieAdaptation && "This book has a movie adaptation");
+
+console.log(book.translations.spanish);
+
+const spanishTranslation =
+  book.translations.spanish || "No Spanish translation";
+
+spanishTranslation;
+
+// console.log(book.reviews.librarything.reviewsCount);
+
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+
+// countWrong;
+
+// ********** nullish coalescing operator **********
+
+// const countRight = book.reviews.librarything.reviewsCount ?? "no data";
+
+// countRight;
+
+// ********** optional chaining **********
+
+const getBookTotalReviews = (book) => {
+  const goodreadsReviews = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarythingReviews = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodreadsReviews + librarythingReviews;
+};
+
+console.log(getBookTotalReviews(book));
+*/
+
+/*
+
+// ********** array methods **********
+
+const books = getBooks();
+
+const titles = books.map((book) => book.title);
+
+titles;
+
+const essentialData = books.map((book) => {
+  const { title, author } = book;
+  return { title, author };
+});
+
+essentialData;
+
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooksWithMovie;
+
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
+
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pagesAllBooks;
+
+const x = [3, 7, 1, 9, 4, 6];
+const sorted = x.slice().sort((a, b) => a - b);
+
+sorted;
+x;
+
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+
+sortedByPages;
+books;
+
+const newBook = {
+  id: 6,
+  title: "The Hobbit",
+  publicationDate: "1937-09-21",
+  author: "J. R. R. Tolkien",
+  genres: ["fantasy", "high-fantasy", "adventure", "fiction"],
+  hasMovieAdaptation: true,
+  pages: 310,
+};
+
+// Add new item: spread array and new item
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+// Delete item: filter array and remove item
+const booksAfterDelete = books.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+// Update item: map array, spread item and update it
+const booksAfterUpdate = books.map((book) =>
+  book.id === 1
+    ? {
+        ...book,
+        pages: 1210,
+        moviePublicationDate: "2001-12-18",
+        title: "Nord o de wing",
+      }
+    : book
+);
+booksAfterUpdate;
+*/
+
+// ********** asynchronous with promises (fetch) **********
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+// console.log("dude"); //prints before the fetch
+
+// ********** async/await **********
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
+const todos = getTodos();
+
+console.log(todos);
+
+console.log("dude");
