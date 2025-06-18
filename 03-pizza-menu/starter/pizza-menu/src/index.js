@@ -69,9 +69,36 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        price={10}
+        photoName="pizzas/spinaci.jpg"
+        soldOut={false}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        price={12}
+        photoName="pizzas/funghi.jpg"
+        soldOut={false}
+      />
     </main>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div className="pizza__details">
+        <h2>{props.name}</h2>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+        <p>{props.soldOut ? "Sold Out" : "Available"}</p>
+      </div>
+    </div>
   );
 }
 
@@ -85,16 +112,6 @@ function Footer() {
     <footer className="footer">
       {isOpen ? "We're currently open!" : "Sorry, we're closed."}
     </footer>
-  );
-}
-
-function Pizza() {
-  return (
-    <>
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </>
   );
 }
 
