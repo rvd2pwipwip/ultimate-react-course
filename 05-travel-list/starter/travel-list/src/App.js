@@ -20,10 +20,25 @@ const Logo = () => {
 };
 
 const Form = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.elements.quantity.value);
+    console.log(e.target.elements.description.value);
+  };
+
   return (
-    <div className="add-form">
+    <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
-    </div>
+      <select name="quantity">
+        {Array.from({ length: 20 }).map((n, i) => (
+          <option key={i + 1} value={i + 1}>
+            {i + 1}
+          </option>
+        ))}
+      </select>
+      <input type="text" placeholder="Item..." name="description" />
+      <button>Add</button>
+    </form>
   );
 };
 
@@ -32,7 +47,7 @@ const PackingList = () => {
     <div className="list">
       <ul>
         {initialItems.map((i) => (
-          <Item item={i} />
+          <Item key={i.id} item={i} />
         ))}
       </ul>
     </div>
