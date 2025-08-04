@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: true },
@@ -20,23 +22,44 @@ const Logo = () => {
 };
 
 const Form = () => {
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.elements.quantity.value);
-    console.log(e.target.elements.description.value);
+    if (!description) {
+      alert("Please enter a description");
+      return;
+    }
+    // create a new item
+    const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+    // add the new item to the items array
+
+    // reset the form
+    setDescription("");
+    setQuantity(1);
   };
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
-      <select name="quantity">
+      <select
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+      >
         {Array.from({ length: 20 }).map((n, i) => (
           <option key={i + 1} value={i + 1}>
             {i + 1}
           </option>
         ))}
       </select>
-      <input type="text" placeholder="Item..." name="description" />
+      <input
+        type="text"
+        placeholder="Item..."
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
       <button>Add</button>
     </form>
   );
