@@ -46,7 +46,6 @@ const AccordionItem = ({ num, title, text }) => {
   const handleClick = () => {
     setIsOpen((isOpen) => !isOpen);
   };
-
   return (
     <div className={`item ${isOpen ? "open" : ""}`} onClick={handleClick}>
       <p className="number">{num < 9 ? `0${num}` : num}</p>
