@@ -33,22 +33,37 @@ const Accordion = ({ data }) => {
         return (
           <AccordionItem
             curOpen={curOpen}
-            onOpen={setCurOpen}
+            setCurOpen={setCurOpen}
             num={i + 1}
             title={item.title}
-            text={item.text}
             key={item.title}
-          />
+          >
+            {item.text}
+          </AccordionItem>
         );
       })}
+      <AccordionItem
+        curOpen={curOpen}
+        setCurOpen={setCurOpen}
+        num={23}
+        title="Think in React"
+        key="Think in React"
+      >
+        <p>Allows React developers to:</p>
+        <ul>
+          <li>Break up UI into components</li>
+          <li>Make components reusuable</li>
+          <li>Place state efficiently</li>
+        </ul>
+      </AccordionItem>
     </div>
   );
 };
 
-const AccordionItem = ({ curOpen, onOpen, num, title, text }) => {
+const AccordionItem = ({ curOpen, setCurOpen, num, title, children }) => {
   const isOpen = num === curOpen;
   const handleClick = () => {
-    isOpen ? onOpen(null) : onOpen(num);
+    setCurOpen(isOpen ? null : num);
   };
 
   return (
@@ -56,7 +71,7 @@ const AccordionItem = ({ curOpen, onOpen, num, title, text }) => {
       <p className="number">{num < 9 ? `0${num}` : num}</p>
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen && <div className="content-box">{text}</div>}
+      {isOpen && <div className="content-box">{children}</div>}
     </div>
   );
 };
