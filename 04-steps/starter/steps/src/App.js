@@ -44,9 +44,7 @@ function Steps() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
 
           <div className="buttons">
             <Button
@@ -74,5 +72,14 @@ const Button = ({ bkgColor, textColor, onClick, children }) => {
     >
       {children}
     </button>
+  );
+};
+
+const StepMessage = ({ step, children }) => {
+  return (
+    <div className="message">
+      <h3>Step {step}</h3>
+      {children}
+    </div>
   );
 };
