@@ -20,7 +20,47 @@ const initialFriends = [
 ];
 
 function App() {
-  return <>TODO</>;
+  return (
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList />
+      </div>
+    </div>
+  );
 }
+
+const FriendsList = () => {
+  const friends = initialFriends;
+  return (
+    <ul>
+      {friends.map((f) => (
+        <Friend friend={f} key={f.id} />
+      ))}
+    </ul>
+  );
+};
+
+const Friend = ({ friend }) => {
+  return (
+    <div>
+      <li>
+        <img src={friend.image} alt={friend.name}></img>
+        <h3>{friend.name}</h3>
+        {friend.balance < 0 && (
+          <p className="red">
+            You owe {friend.name} ${Math.abs(friend.balance)}
+          </p>
+        )}
+        {friend.balance > 0 && (
+          <p className="green">
+            {friend.name} owes you ${friend.balance}
+          </p>
+        )}
+        {!friend.balance && <p>You and {friend.name} are even</p>}
+        <button className="button">Select</button>
+      </li>
+    </div>
+  );
+};
 
 export default App;
